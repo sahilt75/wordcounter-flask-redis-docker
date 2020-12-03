@@ -16,7 +16,7 @@ cache = redis.Redis(host=os.getenv('REDIS_HOST','redis'), port=6379,decode_respo
 @ns.route('/<word>',methods=['GET','PUT'])
 @ns.param('word', 'The word identifier (case-insensitive)')
 class WordCounter(Resource):
-    @ns.doc('Get word counter')
+    @ns.doc('Get word count')
     def get(self,word):
         """Get count of a word"""
         try:
