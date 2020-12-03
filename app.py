@@ -9,11 +9,11 @@ app = Flask(__name__)
 api = Api(app, version='1.0', title='Word counter API',
     description='A simple word counter with flask and redis',
 )
-ns = api.namespace('words', description='Word operations')
+ns = api.namespace('word', description='Word operations')
 cache = redis.Redis(host=os.getenv('REDIS_HOST','redis'), port=6379,decode_responses=True)
 
 
-@ns.route('/word/<word>',methods=['GET','PUT'])
+@ns.route('/<word>',methods=['GET','PUT'])
 class WordCounter(Resource):
     def get(self,word):
         count = cache.get(word)
