@@ -12,8 +12,6 @@ api = Api(app, version='1.0', title='Word counter API',
 ns = api.namespace('word', description='Word operations')
 cache = redis.Redis(host=os.getenv('REDIS_HOST','redis'), port=6379,decode_responses=True)
 
-
-
 # API Endpoints
 @ns.route('/<word>',methods=['GET','PUT'])
 @ns.param('word', 'The word identifier (case-insensitive)')
