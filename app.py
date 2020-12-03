@@ -19,17 +19,24 @@ class WordCounter(Resource):
     @ns.doc('Get word counter')
     def get(self,word):
         """Get count of a word"""
-        count = cache.get(word.lower())
-        if count:
-            return marshal_response(200,'Word `{}` has been PUT {} times'.format(word,count),'SUCCESS'),200
-        else:
-            return marshal_response(404,'Oops! word `{}` not found'.format(word),'ERROR'),200
+        try:
+            count = cache.get(word.lower())
+            if count:
+                return marshal_response(200,'Word `{}` has been PUT {} times'.format(word,count),'SUCCESS'),200
+            else:
+                return marshal_response(404,'Oops! word `{}` not found'.format(word),'ERROR'),200
+        except Exception as e:
+            return marshal_response(500, 'Something went wrong.Error - {}'.format(str(e)),'ERROR'),200
 
     @ns.doc('Increment word counter')
     def put(self,word):
         """Increment count of a word"""
-        cache.incr(word.lower())
-        return marshal_response(200, 'Counter incremented for `{}`!'.format(word), 'Success'),200
+        try:
+            cache.incr(word.lower())
+            return marshal_response(200, 'Counter incremented for `{}`!'.format(word), 'SUCCESS'),200
+        except Exception as e:
+            return marshal_response(500, 'Something went wrong.Error - {}'.format(str(e)),'ERROR'),200
+
 
 
 
