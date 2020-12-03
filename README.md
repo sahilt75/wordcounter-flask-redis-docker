@@ -16,8 +16,10 @@ $ cd wordcounter
 ```
 
 Step 2: Clone this repo
-```sh
-$ sudo docker-compose up --build
+```
+$ git init
+$ git clone https://github.com/sahilt75/wordcounter-flask-redis-docker.git
+$ cd wordcounter-flask-redis-docker
 ```
 
 Step 2: Building and running the containers
