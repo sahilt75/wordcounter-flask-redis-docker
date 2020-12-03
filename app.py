@@ -7,7 +7,7 @@ from utils import marshal_response
 # App Config
 app = Flask(__name__)
 api = Api(app, version='1.0', title='Word counter API',
-    description='A simple word counter with flask and redis',
+    description='A simple word counter web application.'
 )
 ns = api.namespace('word', description='Word operations')
 cache = redis.Redis(host=os.getenv('REDIS_HOST','redis'), port=6379,decode_responses=True)
